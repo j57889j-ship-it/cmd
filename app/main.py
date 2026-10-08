@@ -10,6 +10,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.redis import RedisStorage
 from fastapi import FastAPI, Header, HTTPException, Request
 from redis.asyncio import Redis
+from fastapi import FastAPI, Response
 
 from app.config import get_settings
 from app.database.session import Database
@@ -104,6 +105,10 @@ async def root():
 async def health():
     return {"status": "ok"}
 
+@app.head("/health")
+async def health_head():
+    return Response(status_code=200)
+    
 @app.post("/telegram/webhook")
 async def telegram_webhook(request: Request, x_telegram_bot_api_secret_token: str | None = Header(default=None)):
     if settings.webhook_secret and x_telegram_bot_api_secret_token != settings.webhook_secret:

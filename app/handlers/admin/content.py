@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from sqlalchemy import delete, select
 
-from app.constants import ADMIN_BACK, CANCEL, BOOKS_BACK
+from app.constants import CANCEL
 from app.database.models import Book, Question
 from app.database.session import Database
 from app.keyboards.inline import admin_books_list_keyboard, book_list_keyboard, book_detail_keyboard, question_list_keyboard

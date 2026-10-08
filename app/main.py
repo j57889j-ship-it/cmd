@@ -102,11 +102,7 @@ async def root():
 
 @app.get("/health")
 async def health():
-    async with db.session() as session:
-        await session.execute(__import__("sqlalchemy").text("SELECT 1"))
-    await redis.ping()
     return {"status": "ok"}
-
 
 @app.post("/telegram/webhook")
 async def telegram_webhook(request: Request, x_telegram_bot_api_secret_token: str | None = Header(default=None)):
